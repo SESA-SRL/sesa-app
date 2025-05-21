@@ -20,7 +20,13 @@ st.markdown("Ajustez les variables clés pour estimer automatiquement les impact
 # Interface sliders
 donnees = {}
 for col in colonnes:
-    donnees[col] = st.slider(col, 0.0, 100.0, 50.0)
+    if col == "Année":
+        # Affichage correct de l’année comme une valeur entière de 2010 à 2030
+        donnees[col] = st.slider(col, min_value=2010, max_value=2030, value=2020, step=1)
+    else:
+        # Curseur normal pour les autres variables
+        donnees[col] = st.slider(col, 0.0, 100.0, 50.0)
+
 
 df_input = pd.DataFrame([donnees])
 
