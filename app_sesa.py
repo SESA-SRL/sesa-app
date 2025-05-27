@@ -14,7 +14,7 @@ model_dict = {
 # Charger les colonnes d'entrée
 colonnes = joblib.load("colonnes_utiles.pkl")
 
-st.title("📊 Simulation de performance globale de SESA SRL")
+st.title("Simulation de performance globale de SESA SRL")
 st.markdown("Ajustez les variables clés pour estimer automatiquement les impacts sur tous les indicateurs stratégiques.")
 
 # Interface sliders
@@ -31,11 +31,11 @@ for col in colonnes:
 df_input = pd.DataFrame([donnees])
 
 # Prédictions simultanées
-if st.button("📌 Prédire toutes les performances estimées"):
+if st.button("Prédire toutes les performances estimées"):
     for nom, modele in model_dict.items():
         try:
             df_input_filtre = df_input[modele.feature_names_in_]
             prediction = modele.predict(df_input_filtre)[0]
-            st.success(f"✅ **{nom}** estimé : **{prediction:.2f}**")
+            st.success(f"**{nom}** estimé : **{prediction:.2f}**")
         except Exception as e:
-            st.error(f"❌ Erreur sur {nom} : {e}")
+            st.error(f"Erreur sur {nom} : {e}")
